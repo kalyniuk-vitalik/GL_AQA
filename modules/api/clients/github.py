@@ -1,6 +1,6 @@
 import pytest
 import requests
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, JSONDecodeError
 
 
 class GitHub:
@@ -24,3 +24,14 @@ class GitHub:
         self.response = requests.get(self.url)
         self.response.raise_for_status()
         return self.response.json()
+
+    def get_emoji(self, url):
+        self.url = url
+        self.response = requests.get(self.url)
+        return self.response.json()
+
+    def get_commit(self, name, rep):
+        self.url = f"https://api.github.com/repos/{name}/{rep}/commits"
+        self.response = requests.get(self.url)
+        return self.response.json()
+
