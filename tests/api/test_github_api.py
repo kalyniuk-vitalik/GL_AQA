@@ -53,6 +53,7 @@ def test_get_commits_list(github_api):
     for commit in commits:
         assert "sha" in commit
 
+
 @pytest.mark.api
 def test_get_first_commit(github_api):
     commits = github_api.get_commit("octocat", "Hello-World")
