@@ -60,3 +60,6 @@ def test_get_first_commit(github_api):
     first_commit = commits[0]
     assert "sha" in first_commit
     assert first_commit["sha"] == "7fd1a60b01f91b314f59955a4e4d4e80d8edf11d"
+
+
+

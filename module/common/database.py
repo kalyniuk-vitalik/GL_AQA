@@ -74,15 +74,20 @@ class Database():
         record = self.cursor.fetchall()
         return isinstance(record[0][0], int)
 
-    def select_all_customers_from_database(self):
-        query = f"SELECT * FROM customers"
-        self.cursor.execute(query)
-        record = self.cursor.fetchall()
-        return record
-
     def insert_new_customer(self, name, address, city, postalcode, country):
         query = f"INSERT INTO customers (name, address, city, postalCode, country) \
                 VALUES ('{name}', '{address}', '{city}', {postalcode}, '{country}')"
         self.cursor.execute(query)
         self.connection.commit()
 
+    def select_quantity_by_name(self, name):
+        query = f"SELECT quantity FROM products WHERE name = '{name}'"
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
+
+    def select_product_by_id(self, product_id):
+        query = f"SELECT id, name, description, quantity FROM products WHERE id = {product_id}"
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
